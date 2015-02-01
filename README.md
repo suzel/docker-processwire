@@ -1,6 +1,6 @@
 # Docker ProcessWire
 
-## Build the Docker image
+## Installation
 
 Git clone the repository: 
 
@@ -13,6 +13,8 @@ Pull the ubuntu Docker:
 Build the docker-processwire:
 
 <code>sudo docker build -t processwire .</code>
+
+## Usage
 
 Run the docker-processwire:
 
