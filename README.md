@@ -18,6 +18,10 @@ Run the docker-processwire:
 
 <code>sudo docker run --name webproject -p 80:80 -d processwire</code>
 
+Run the docker-processwire with volume:
+
+<code>sudo docker run --name webproject -v /Users/user/websites/webproject:/usr/share/nginx/www -p 80:80 -d processwire</code>
+
 Point your browser to:
 
 <code>http://serverip</code>

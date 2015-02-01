@@ -36,10 +36,8 @@ RUN sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php5/fpm/php-fpm.co
 RUN sed -i -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g" /etc/php5/fpm/pool.d/www.conf
 RUN find /etc/php5/cli/conf.d/ -name "*.ini" -exec sed -i -re 's/^(\s*)#(.*)/\1;\2/g' {} \;
 
-# ProcessWire Config
-RUN rm -rf /usr/share/nginx/www
-RUN cd /usr/share/nginx/ && git clone git://github.com/ryancramerdesign/ProcessWire.git -b master www
-RUN chown -R www-data:www-data /usr/share/nginx/www
+# ProcessWire Install
+RUN git clone git://github.com/ryancramerdesign/ProcessWire.git -b master
 
 # Supervisor Config
 RUN easy_install supervisor
