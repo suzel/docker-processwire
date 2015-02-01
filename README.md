@@ -4,26 +4,38 @@
 
 Git clone the repository: 
 
-<code>git clone https://github.com/suzel/docker-processwire.git</code>
+```
+git clone https://github.com/suzel/docker-processwire.git
+```
 
 Pull the ubuntu Docker:
 
-<code>sudo docker pull ubuntu:14.04</code>
+```
+sudo docker pull ubuntu:14.04
+```
 
 Build the docker-processwire:
 
-<code>sudo docker build -t processwire .</code>
+```
+sudo docker build -t processwire .
+```
 
 ## Usage
 
 Run the docker-processwire:
 
-<code>sudo docker run --name webproject -p 80:80 -d processwire</code>
+```
+sudo docker run --name webproject -p 80:80 -d processwire
+```
 
 Run the docker-processwire with volume:
 
-<code>sudo docker run --name webproject -v /Users/user/websites/webproject:/usr/share/nginx/www -p 80:80 -d processwire</code>
+```
+sudo docker run --name webproject -v /Users/user/websites/webproject:/usr/share/nginx/www -p 80:80 -d processwire
+```
 
 Point your browser to:
 
-<code>http://serverip</code>
+```
+http://serverip
+```
