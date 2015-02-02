@@ -2,21 +2,22 @@
 
 ## Installation
 
-Git clone the repository: 
-
-```
-git clone https://github.com/suzel/docker-processwire.git
-```
-
 Pull the ubuntu Docker:
 
 ```
 sudo docker pull ubuntu:14.04
 ```
 
+Git clone the repository: 
+
+```sh
+$ git clone https://github.com/suzel/docker-processwire.git
+```
+
 Build the docker-processwire:
 
-```
+```sh
+cd docker-processwire/
 sudo docker build -t processwire .
 ```
 
