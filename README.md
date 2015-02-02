@@ -17,22 +17,22 @@ $ git clone https://github.com/suzel/docker-processwire.git
 Build the docker-processwire:
 
 ```sh
-cd docker-processwire/
-sudo docker build -t processwire .
+$ cd docker-processwire/
+$ sudo docker build -t processwire .
 ```
 
 ## Usage
 
 Run the docker-processwire:
 
-```
-sudo docker run --name webproject -p 80:80 -d processwire
+```sh
+$ sudo docker run --name webproject -p 80:80 -d processwire
 ```
 
 Run the docker-processwire with volume:
 
-```
-sudo docker run --name webproject -v /Users/user/websites/webproject:/usr/share/nginx/www -p 80:80 -d processwire
+```sh
+$ sudo docker run --name webproject -v /Users/user/websites/webproject:/usr/share/nginx -p 80:80 -d processwire
 ```
 
 Point your browser to:
