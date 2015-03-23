@@ -47,13 +47,13 @@ ADD ./config/supervisord.conf /etc/supervisord.conf
 EXPOSE 80
 EXPOSE 3306
 
-# Volume
-VOLUME /usr/share/nginx/www
-
 # Startup Script
 ADD ./scripts/start.sh /scripts/start.sh
 RUN chmod 755 /scripts/start.sh
 CMD ["/bin/bash", "/scripts/start.sh"]
+
+# Volume
+VOLUME /usr/share/nginx/www
 
 # Clean
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
