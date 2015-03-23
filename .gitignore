@@ -3,6 +3,7 @@
 .DS_Store
 ._*
 
-### PyCharm
+### IDE
 
 .idea
+*.iml

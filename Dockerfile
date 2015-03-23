@@ -47,6 +47,9 @@ ADD ./config/supervisord.conf /etc/supervisord.conf
 EXPOSE 80
 EXPOSE 3306
 
+# Volume
+VOLUME /usr/share/nginx/www
+
 # Startup Script
 ADD ./scripts/start.sh /scripts/start.sh
 RUN chmod 755 /scripts/start.sh
