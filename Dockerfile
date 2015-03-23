@@ -43,6 +43,9 @@ RUN git clone git://github.com/ryancramerdesign/ProcessWire.git -b master
 RUN easy_install supervisor
 ADD ./config/supervisord.conf /etc/supervisord.conf
 
+# Volume
+# VOLUME /usr/share/nginx/www
+
 # Expose
 EXPOSE 80
 EXPOSE 3306
@@ -51,9 +54,6 @@ EXPOSE 3306
 ADD ./scripts/start.sh /scripts/start.sh
 RUN chmod 755 /scripts/start.sh
 CMD ["/bin/bash", "/scripts/start.sh"]
-
-# Volume
-VOLUME /usr/share/nginx/www
 
 # Clean
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
