@@ -18,7 +18,7 @@ if [ -d /ProcessWire ]; then
 
 	echo "========================================================================"
 	echo ""
-	echo "    You can now configure to this MySQL server using:"
+	echo "    Access Information for MySQL Server :"
 	echo ""
 	echo "    MySQL Root Password : $MYSQL_ROOT_PASS"
 	echo "    MySQL User : $MYSQL_USER"
