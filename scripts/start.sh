@@ -8,7 +8,7 @@ if [ -d /ProcessWire ]; then
 	chown -R www-data:www-data /usr/share/nginx/www
 
 	# MySQL
-	$MYSQL_ROOT_PASS=`pwgen -c -n -1 12`
+	MYSQL_ROOT_PASS=`pwgen -c -n -1 12`
 	/usr/bin/mysqld_safe &
 	sleep 10s
 	service mysql start
