@@ -14,6 +14,7 @@ if [ -d /ProcessWire ]; then
 	service mysql start
 	mysqladmin -u root password $MYSQL_ROOT_PASS
 	mysql -uroot -p$MYSQL_ROOT_PASS -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASS' WITH GRANT OPTION; FLUSH PRIVILEGES;"
+	mysql -uroot -p$MYSQL_ROOT_PASS -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASS' WITH GRANT OPTION; FLUSH PRIVILEGES;"
 	mysql -uroot -p$MYSQL_ROOT_PASS -e "CREATE DATABASE processwire; GRANT ALL PRIVILEGES ON processwire.* TO '$MYSQL_USER'@'localhost' IDENTIFIED BY '$MYSQL_PASS'; FLUSH PRIVILEGES;"
 
 	echo "========================================================================"
@@ -27,8 +28,6 @@ if [ -d /ProcessWire ]; then
 	echo "========================================================================"
 
 fi
-
-echo "RESTART ..."
 
 # Supervisor
 /usr/local/bin/supervisord -n
