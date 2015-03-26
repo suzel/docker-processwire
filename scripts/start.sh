@@ -28,5 +28,7 @@ if [ -d /ProcessWire ]; then
 
 fi
 
+echo "RESTART ..."
+
 # Supervisor
 /usr/local/bin/supervisord -n
