@@ -46,7 +46,7 @@ RUN easy_install supervisor
 ADD ./config/supervisord.conf /etc/supervisord.conf
 
 # Volume
-# VOLUME /usr/share/nginx/www/
+VOLUME /usr/share/nginx/www/
 
 # Expose
 EXPOSE 80
