@@ -48,7 +48,6 @@ ADD ./config/supervisord.conf /etc/supervisord.conf
 # Volume
 VOLUME /usr/share/nginx/www/
 
-
 # Expose
 EXPOSE 80
 EXPOSE 3306
