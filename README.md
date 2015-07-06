@@ -1,42 +1,33 @@
 # Docker ProcessWire
 
+A Dockerfile that installs the latest processwire, nginx, php-apc and php-fpm.
+
 ## Installation
 
-Pull the ubuntu Docker:
+The easiest way to get this docker image installed is to pull the latest version from the Docker registry:
 
 ```
-sudo docker pull ubuntu:14.04
-```
-
-Git clone the repository: 
-
-```sh
-$ git clone https://github.com/suzel/docker-processwire.git
+$ docker pull suzel/docker-processwire
 ```
 
 Build the docker-processwire:
 
 ```sh
+$ git clone https://github.com/suzel/docker-processwire.git
 $ cd docker-processwire/
-$ sudo docker build -t processwire .
+$ docker build -t processwire .
 ```
 
 ## Usage
 
-Run the docker-processwire:
+Start your image binding external port 80 in all interfaces to your container:
 
 ```sh
-$ sudo docker run --name webproject -p 80:80 -d processwire
+$ docker run --name webproject -v "$PWD":/usr/share/nginx -p 80:80 -d processwire
 ```
 
-Run the docker-processwire with volume:
-
-```sh
-$ sudo docker run --name webproject -v /Users/user/websites/webproject:/usr/share/nginx -p 80:80 -d processwire
-```
-
-Point your browser to:
+You can the visit the following URL in a browser on your host machine to get started:
 
 ```
-http://serverip
+http://127.0.0.1:80
 ```
