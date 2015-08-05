@@ -6,6 +6,7 @@ if [ -d /ProcessWire ]; then
 	rm -rf /usr/share/nginx/www
 	mv /ProcessWire /usr/share/nginx/www
 	chown -R www-data:www-data /usr/share/nginx/www
+	usermod -u 1000 www-data
 
 	# MySQL
 	MYSQL_ROOT_PASS=`pwgen -c -n -1 12`
