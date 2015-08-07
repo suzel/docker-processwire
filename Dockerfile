@@ -40,6 +40,7 @@ RUN find /etc/php5/cli/conf.d/ -name "*.ini" -exec sed -i -re 's/^(\s*)#(.*)/\1;
 
 # ProcessWire Install
 RUN git clone git://github.com/ryancramerdesign/ProcessWire.git -b master
+RUN cd ProcessWire/ && rm -rf .git
 
 # Supervisor Config
 RUN easy_install supervisor
