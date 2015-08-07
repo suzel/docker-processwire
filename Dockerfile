@@ -7,6 +7,7 @@ RUN ln -sf /bin/true /sbin/initctl
 
 # Set no tty
 ENV DEBIAN_FRONTEND noninteractive
+ENV MYSQL_DB processwire
 ENV MYSQL_USER processwire
 ENV MYSQL_PASS processwire
 

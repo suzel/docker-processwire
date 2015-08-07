@@ -23,7 +23,13 @@ $ docker build -t processwire .
 Start your image binding external port 80 in all interfaces to your container:
 
 ```sh
-$ docker run --name webproject -v $PWD:/usr/share/nginx -p 80:80 -d processwire
+$ docker run --name webproject \
+             -v $PWD:/usr/share/nginx \
+             -p 80:80 -p 3306:3306 \
+             -e MYSQL_DB=processwire \
+             -e MYSQL_USER=processwire \
+             -e MYSQL_PASS=processwire \
+             -d processwire
 ```
 
 You can the visit the following URL in a browser on your host machine to get started:
