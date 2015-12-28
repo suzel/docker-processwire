@@ -1,5 +1,7 @@
 # Docker ProcessWire
 
+[![Go to Docker Hub](https://img.shields.io/badge/Docker%20Hub-%E2%86%92-blue.svg)](https://hub.docker.com/r/suzel/docker-processwire/)
+
 A Dockerfile that installs the latest nginx, php, php-apc, mysql and processwire.
 
 ## Installation
