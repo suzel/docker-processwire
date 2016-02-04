@@ -15,4 +15,5 @@ docker run --name webproject \
              -e MYSQL_PASS=processwire \
              -d suzel/docker-processwire
 
+open http://$(docker-machine ip default):80
 docker exec -it webproject bash

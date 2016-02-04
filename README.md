@@ -37,5 +37,5 @@ $ docker run --name webproject \
 You can the visit the following URL in a browser on your host machine to get started:
 
 ```
-http://localhost:80
+open http://$(docker-machine ip default):80
 ```
