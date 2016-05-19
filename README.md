@@ -1,4 +1,4 @@
-# Docker ProcessWire
+# ProcessWire (Docker Image)
 
 [![Go to Docker Hub](https://img.shields.io/badge/Docker%20Hub-%E2%86%92-blue.svg)](https://hub.docker.com/r/suzel/docker-processwire/)
 
@@ -12,7 +12,7 @@ The easiest way to get this docker image installed is to pull the latest version
 $ docker pull suzel/docker-processwire
 ```
 
-Build the docker-processwire:
+or build from scratch:
 
 ```sh
 $ git clone https://github.com/suzel/docker-processwire.git
@@ -27,15 +27,20 @@ Start your image binding external port 80 in all interfaces to your container:
 ```sh
 $ docker run --name webproject \
              -v $PWD:/usr/share/nginx \
-             -p 80:80 -p 3306:3306 \
-             -e MYSQL_DB=processwire \
-             -e MYSQL_USER=processwire \
-             -e MYSQL_PASS=processwire \
+             -p 80:80 \
+             -p 3306:3306 \
+             -e MYSQL_DB=pw_db \
+             -e MYSQL_USER=pw_user \
+             -e MYSQL_PASS=pw_pass \
              -d suzel/docker-processwire
 ```
 
 You can the visit the following URL in a browser on your host machine to get started:
 
 ```
-open http://$(docker-machine ip default):80
+open http://$(docker-machine ip default)
 ```
+
+## Documentation
+
+* [ProcessWire Documentation](https://processwire.com/docs/)

@@ -1,0 +1,5 @@
+config/
+scripts/
+.gitignore
+docker-test.sh
+README.md
