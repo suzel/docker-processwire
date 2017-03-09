@@ -1,3 +1,4 @@
+.gitattributes
 .gitignore
 docker-test.sh
 README.md
