@@ -1,8 +1,8 @@
-# ProcessWire (Docker Image)
+# ProcessWire Docker Image
 
 [![Go to Docker Hub](https://img.shields.io/badge/Docker%20Hub-%E2%86%92-blue.svg)](https://hub.docker.com/r/suzel/docker-processwire/)
 
-A Dockerfile that installs the latest nginx, php, php-apc, mysql and processwire.
+A Docker container for Processwire Projects.
 
 ## Installation
 
@@ -16,7 +16,7 @@ or build from scratch:
 
 ```sh
 $ git clone https://github.com/suzel/docker-processwire.git
-$ cd docker-processwire/
+$ cd docker-processwire
 $ docker build -t suzel/docker-processwire .
 ```
 
@@ -38,9 +38,10 @@ $ docker run --name webproject \
 You can the visit the following URL in a browser on your host machine to get started:
 
 ```
-open http://$(docker-machine ip default)
+open http://<docker ip address>
 ```
 
 ## Documentation
 
-* [ProcessWire Documentation](https://processwire.com/docs/)
+* [ProcessWire Project](https://www.processwire.com)
+* [ProcessWire Documentation](https://www.processwire.com/docs/)
