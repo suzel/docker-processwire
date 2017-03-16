@@ -1,60 +1,48 @@
-FROM ubuntu:14.04
-MAINTAINER Sukru Uzel <uzelsukru@gmail.com>
+FROM ubuntu:16.04
+MAINTAINER Sukru Uzel <sukru.uzel@gmail.com>
 
-# Keep upstart
-RUN dpkg-divert --local --rename --add /sbin/initctl && ln -sf /bin/true /sbin/initctl
+# Packages installation
+RUN apt-get update && \
+    apt-get dist-upgrade -y && \
+    apt-get install -y \
+    git \
+    apache2 \
+    libapache2-mod-php7.0 \
+    php7.0 \
+    php7.0-cli \
+    php7.0-gd \
+    php7.0-json \
+    php7.0-ldap \
+    php7.0-mbstring \
+    php7.0-mysql \
+    php7.0-xml \
+    php7.0-xsl \
+    php7.0-zip \
+    php7.0-soap
 
-# Set no tty
-ENV DEBIAN_FRONTEND noninteractive
-ENV MYSQL_DB pw_db
-ENV MYSQL_USER pw_user
-ENV MYSQL_PASS pw_pass
+# Update the default apache site with the config we created.
+COPY config/apache/default.conf /etc/apache2/sites-available/000-default.conf
+RUN a2enmod rewrite
 
-# Update System
-RUN apt-get update && apt-get -y upgrade
+# Update php.ini
+RUN sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php/7.0/apache2/php.ini
+RUN sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php/7.0/cli/php.ini
 
-# Basic Requirements
-RUN apt-get install -y pwgen --force-yes python-setuptools curl git unzip \
-    mysql-server mysql-client \
-    nginx \
-    php5-fpm php5-mysql php-apc php5-cli php5-curl php5-gd php5-mcrypt php5-intl  \
-    php5-imap php5-tidy php5-imagick php5-memcache php5-xmlrpc php5-xsl
-
-# MySQL Config
-RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
-
-# Nginx Config
-RUN sed -i -e"s/keepalive_timeout\s*65/keepalive_timeout 2/" /etc/nginx/nginx.conf && \
-    sed -i -e"s/keepalive_timeout 2/keepalive_timeout 2;\n\tclient_max_body_size 100m/" /etc/nginx/nginx.conf && \
-    echo "daemon off;" >> /etc/nginx/nginx.conf
-ADD ./config/nginx-site.conf /etc/nginx/sites-available/default
-
-# PHP Config
-RUN sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php5/fpm/php.ini && \
-    sed -i -e "s/upload_max_filesize\s*=\s*2M/upload_max_filesize = 100M/g" /etc/php5/fpm/php.ini && \
-    sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 100M/g" /etc/php5/fpm/php.ini && \
-    sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php5/fpm/php-fpm.conf && \
-    sed -i -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g" /etc/php5/fpm/pool.d/www.conf && \
-    find /etc/php5/cli/conf.d/ -name "*.ini" -exec sed -i -re 's/^(\s*)#(.*)/\1;\2/g' {} \;
-
-# ProcessWire Install
-RUN git clone git://github.com/ryancramerdesign/ProcessWire.git -b master && cd ProcessWire/ && rm -rf .git
-
-# Supervisor Config
-RUN easy_install supervisor
-ADD ./config/supervisord.conf /etc/supervisord.conf
-
-# Volume
-VOLUME ["/var/lib/mysql", "/usr/share/nginx"]
+# Install ProcessWire
+RUN git clone git://github.com/ryancramerdesign/ProcessWire.git -b master /var/www/pw
+RUN chown -R www-data:www-data /var/www/pw
 
 # Expose
 EXPOSE 80
-EXPOSE 3306
 
-# Startup Script
-ADD ./scripts/start.sh /scripts/start.sh
-RUN chmod 755 /scripts/start.sh
-CMD ["/bin/bash", "/scripts/start.sh"]
+# Volume
+VOLUME ["/var/www/pw"]
 
 # Clean
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/pw/.git
+
+# Init
+ADD scripts/init.sh /init.sh
+RUN chmod +x /init.sh
+CMD ["/init.sh"]
