@@ -25,7 +25,6 @@ Start your image binding external port 80 in all interfaces to your container:
 
 ```sh
 $ docker run --name pw-project \
-             -v $PWD:/var/www/pw \
              -p 80:80 \
              -d suzel/docker-processwire
 ```
