@@ -29,7 +29,7 @@ RUN sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php/7.0/apa
 RUN sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php/7.0/cli/php.ini
 
 # Install ProcessWire
-RUN git clone git://github.com/ryancramerdesign/ProcessWire.git -b master /var/www/pw
+RUN git clone git://github.com/processwire/processwire.git -b master /var/www/pw
 RUN chown -R www-data:www-data /var/www/pw
 
 # Expose
