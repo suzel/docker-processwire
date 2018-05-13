@@ -1,0 +1,14 @@
+version: '2'
+
+tasks:
+  build:
+    cmds:
+      - docker build -t suzel/docker-processwire .
+  run:
+    deps: [build]
+    cmds:
+      - docker run --name pw-project -p 80:80 -d suzel/docker-processwire
+  clean:
+    cmds:
+      - docker stop pw-project && docker rm pw-project -v
+      - docker rmi suzel/docker-processwire --force
